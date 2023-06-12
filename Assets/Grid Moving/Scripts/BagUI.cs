@@ -12,6 +12,7 @@ public class BagUI : MonoBehaviour
     public GameObject[] _slots;
     public GameObject[] _items;
 
+
     public void Initialize(int maxItemNum)
     {
         _capacity = maxItemNum;

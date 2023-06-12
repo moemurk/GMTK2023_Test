@@ -8,7 +8,4 @@ public class Item : ScriptableObject
 {
     public string itemName;
     public Sprite itemImg;
-    //sfaaawawfaw
-    // this is a test
-    // new test
 }
