@@ -75,8 +75,8 @@ public class BagUI : MonoBehaviour
                     // not null & not null
                     // update item, num, index...
                     GameObject itemElem = _items[i];
-                    itemElem.AddComponent<Image>().sprite = items[i].itemImg;
-                    itemElem.AddComponent<ItemUI>().index = i;
+                    itemElem.GetComponent<Image>().sprite = items[i].itemImg;
+                    itemElem.GetComponent<ItemUI>().index = i;
                     itemElem.GetComponent<ItemUI>().bagUI = this;
                     itemElem.GetComponent<ItemUI>().item = items[i];
                     itemElem.GetComponent<ItemUI>().num = itemNums[i];

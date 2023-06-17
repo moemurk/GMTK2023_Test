@@ -9,6 +9,7 @@ public class Bag : MonoBehaviour
     [Range(0, 50)]
     public int maxItemNumber;
     public BagUI ui;
+    public PocketUI pocketUI;
     [SerializeField]
     private Item[] _items;
     [SerializeField]
@@ -59,6 +60,7 @@ public class Bag : MonoBehaviour
             }
         }
         ui.UpdateItems(_items, _itemNums);
+        pocketUI.FindItems();
         return 0;
     }
 
@@ -85,5 +87,62 @@ public class Bag : MonoBehaviour
         _items[now] = oldItem;
         _itemNums[now] = oldNum;
         ui.UpdateItems(_items, _itemNums);
+        pocketUI.FindItems();
+    }
+
+    public int FindItemFrom(int startIdx)
+    {
+        if (startIdx >= maxItemNumber) {
+            startIdx = startIdx - maxItemNumber;
+        }
+        if (startIdx < 0) {
+            startIdx = maxItemNumber - startIdx;
+        }
+        if (startIdx >= maxItemNumber || startIdx < 0) {
+            return -1;
+        }
+        for (int i = startIdx; i < maxItemNumber; i++) {
+            if (_items[i] != null) {
+                return i;
+            }
+        }
+        for (int i = 0; i < startIdx; i++) {
+            if (_items[i] != null) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int FindItemFromReverse(int startIdx)
+    {
+        if (startIdx >= maxItemNumber) {
+            startIdx = startIdx - maxItemNumber;
+        }
+        if (startIdx < 0) {
+            startIdx = maxItemNumber + startIdx;
+        }
+        if (startIdx >= maxItemNumber || startIdx < 0) {
+            return -1;
+        }
+        for (int i = startIdx; i >= 0; i--) {
+            if (_items[i] != null) {
+                return i;
+            }
+        }
+        for (int i = maxItemNumber - 1; i > startIdx; i--) {
+            if (_items[i] != null) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public Item GetItem(int index)
+    {
+        if (index >= maxItemNumber) {
+            return null;
+        }
+        return _items[index];
     }
 }
